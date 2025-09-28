@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include "Student.h"
 
 int main() {
-	printf("Hello, World!\n");
+	Student s;
+	s = Student();
+	s.study();
 	return 0;
 }

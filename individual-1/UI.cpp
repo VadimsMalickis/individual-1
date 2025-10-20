@@ -6,15 +6,15 @@
 void UI::mainLoop()
 {
 	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
-
+	std::cout << "Type following commands to proceed:" << std::endl << std::endl;
+	this->displayHelp();
 	while (true)
 	{
-		this->displayMenu();
 		int choice;
 		std::cout << "Enter your choice: ";
 		std::cin >> choice;
 		if (choice == 1) {
-			this->displayMenu();
+			this->displayHelp();
 		}
 		else if (choice == 2)
 		{
@@ -32,9 +32,8 @@ void UI::mainLoop()
 	}
 }
 
-void UI::displayMenu()
+void UI::displayHelp()
 {
-	std::cout << "Type following commands to proceed:" << std::endl;
 	std::cout << "1. For Help" << std::endl;
 	std::cout << "2. Register new Student" << std::endl;
 	std::cout << "3. View all Students" << std::endl;

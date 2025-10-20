@@ -4,7 +4,7 @@ class UI
 {
 	public:
 		void mainLoop();
-		void displayMenu();
+		void displayHelp();
 		Student askStudentDetails();
 };
 

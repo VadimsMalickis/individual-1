@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "Student.h"
+#include "UI.h"
 
 int main() {
-	Student s;
-	s = Student();
-	s.study();
+	UI ui = UI();
+	ui.mainLoop();
+
 	return 0;
 }

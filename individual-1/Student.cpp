@@ -1,5 +1,5 @@
 #include "Student.h"
-#include <iostream>
+#include <string>
 
 Student::Student(std::string personalCode, std::string firstName, std::string lastName, std::string group, std::string email, std::string studentCode)
 {
@@ -9,9 +9,4 @@ Student::Student(std::string personalCode, std::string firstName, std::string la
 	this->group = group;
 	this->email = email;
 	this->studentCode = studentCode;
-}
-
-void Student::study()
-{	
-	std::cout << "Studying..." << std::endl;
 }

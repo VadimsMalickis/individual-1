@@ -1,9 +1,12 @@
 #include <iostream>
 #include "UI.h"
 #include "StudentManager.h"
+#include "Student.h"
 
 void UI::mainLoop()
 {
+	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
+
 	while (true)
 	{
 		this->displayMenu();
@@ -15,7 +18,7 @@ void UI::mainLoop()
 		}
 		else if (choice == 2)
 		{
-			
+			Student student = this->askStudentDetails();
 		}
 		else if (choice == 4)
 		{
@@ -31,7 +34,6 @@ void UI::mainLoop()
 
 void UI::displayMenu()
 {
-	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
 	std::cout << "Type following commands to proceed:" << std::endl;
 	std::cout << "1. For Help" << std::endl;
 	std::cout << "2. Register new Student" << std::endl;
@@ -40,7 +42,7 @@ void UI::displayMenu()
 	
 }
 
-void UI::askStudentDetails()
+Student UI::askStudentDetails()
 {
 	std::string personalCode;
 	std::string firstName;
@@ -62,5 +64,5 @@ void UI::askStudentDetails()
 	std::cin >> studentCode;
 	
 	StudentManager sm = StudentManager();
-	sm.createStudent(personalCode, firstName, lastName, group, email, studentCode);
+	return sm.createStudent(personalCode, firstName, lastName, group, email, studentCode);
 }

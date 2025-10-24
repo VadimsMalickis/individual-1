@@ -6,3 +6,8 @@ Student StudentManager::createStudent(std::string personalCode, std::string firs
 {   
 	return Student(personalCode, firstName, lastName, group, email, studentCode);
 }
+
+void StudentManager::addStudent(Student student)
+{
+	// Implementation to add student to the system (e.g., save to a database or a file)
+}

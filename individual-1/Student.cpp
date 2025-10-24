@@ -1,12 +1,22 @@
 #include "Student.h"
 #include <string>
 
-Student::Student(std::string personalCode, std::string firstName, std::string lastName, std::string group, std::string email, std::string studentCode)
+Student::Student(
+	std::string personalCode,
+	std::string firstName,
+	std::string lastName,
+	std::string group,
+	std::string email,
+	std::string studentCode
+) : personalCode(personalCode),
+	firstName(firstName),
+	lastName(lastName),
+	group(group),
+	email(email),
+	studentCode(studentCode)
+{}
+
+std::string Student::studentToString()
 {
-	this->personalCode = personalCode;
-	this->firstName = firstName;
-	this->lastName = lastName;
-	this->group = group;
-	this->email = email;
-	this->studentCode = studentCode;
+	return this->personalCode;
 }

@@ -19,6 +19,8 @@ void UI::mainLoop()
 		else if (choice == 2)
 		{
 			Student student = this->askStudentDetails();
+			StudentManager sm = StudentManager();
+			sm.addStudent(student);
 		}
 		else if (choice == 4)
 		{

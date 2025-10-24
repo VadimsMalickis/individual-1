@@ -18,5 +18,10 @@ Student::Student(
 
 std::string Student::studentToString()
 {
-	return this->personalCode;
+	return this->personalCode + "," +
+		this->firstName + "," +
+		this->lastName + "," +
+		this->group + "," +
+		this->email + "," +
+		this->studentCode;
 }

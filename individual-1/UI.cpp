@@ -3,7 +3,7 @@
 #include "StudentManager.h"
 #include "Student.h"
 
-void UI::mainLoop()
+void UI::start()
 {
 	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
 	std::cout << "Type following commands to proceed:" << std::endl << std::endl;

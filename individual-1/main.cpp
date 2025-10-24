@@ -4,7 +4,7 @@
 
 int main() {
 	UI ui = UI();
-	ui.mainLoop();
+	ui.start();
 
 	return 0;
 }

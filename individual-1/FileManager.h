@@ -3,6 +3,9 @@
 #pragma once
 class FileManager
 {
-	void  writeStudent(std::string studentAsString);
+	private:
+		const std::string stFileName = "students.txt";
+	public:
+		void  writeStudent(std::string studentAsString);
 };
 

@@ -1,6 +1,7 @@
 #include "StudentManager.h"
 #include "Student.h"
 #include <string>
+#include "FileManager.h"
 
 Student StudentManager::createStudent(std::string personalCode, std::string firstName, std::string lastName, std::string group, std::string email, std::string studentCode)
 {   
@@ -9,5 +10,6 @@ Student StudentManager::createStudent(std::string personalCode, std::string firs
 
 void StudentManager::addStudent(Student student)
 {
-	// Implementation to add student to the system (e.g., save to a database or a file)
+	FileManager fm = FileManager();
+	fm.writeStudent(student.studentToString());
 }

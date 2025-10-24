@@ -6,5 +6,5 @@
 void FileManager::writeStudent(std::string stStr)
 {
 	std::ofstream file;
-	file.open("students.txt");
+	file.open(FileManager::stFileName);
 }

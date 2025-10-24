@@ -3,7 +3,7 @@
 class UI
 {
 	public:
-		void mainLoop();
+		void start();
 		void displayHelp();
 		Student askStudentDetails();
 };

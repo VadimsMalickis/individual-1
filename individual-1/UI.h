@@ -1,12 +1,13 @@
 #pragma once
-#include "Student.h"
+#include "StudentManager.h"
 class UI
 {
-private:
-	std::string eto;
-	public:
-		void start();
+	private:
+		StudentManager sm;
 		void displayHelp();
-		Student askStudentDetails();
+		void askStudentDetails();
+	public:
+		UI() {}
+		void start();
 };
 

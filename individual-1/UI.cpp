@@ -3,6 +3,11 @@
 #include "StudentManager.h"
 #include "Student.h"
 
+UI::UI()
+{
+	this->sm = StudentManager();
+}
+
 void UI::start()
 {
 	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
@@ -12,8 +17,6 @@ void UI::start()
 	while (true)
 	{
 		int choice;
-		StudentManager sm = StudentManager();
-		Student student;
 		std::cout << "Enter your choice: ";
 		std::cin >> choice;
 		switch (choice)
@@ -22,8 +25,7 @@ void UI::start()
 				this->displayHelp();
 				break;
 			case 2:
-				student = this->askStudentDetails();
-				sm.addStudent(student);
+				this->askStudentDetails();
 				break;
 			case 3:
 				std::cout << "Viewing all students is not implemented yet." << std::endl;
@@ -47,7 +49,7 @@ void UI::displayHelp()
 	
 }
 
-Student UI::askStudentDetails()
+void UI::askStudentDetails()
 {
 	std::string personalCode;
 	std::string firstName;
@@ -67,8 +69,8 @@ Student UI::askStudentDetails()
 	std::cin >> email;
 	std::cout << "Enter Student Code: ";
 	std::cin >> studentCode;
-	this->eto = "done";
 	
-	StudentManager sm = StudentManager();
-	return sm.createStudent(personalCode, firstName, lastName, group, email, studentCode);
+	sm.processNewStudent(personalCode, firstName, lastName, group, email, studentCode);
 }
+
+

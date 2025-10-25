@@ -8,28 +8,32 @@ void UI::start()
 	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
 	std::cout << "Type following commands to proceed:" << std::endl << std::endl;
 	this->displayHelp();
+
 	while (true)
 	{
 		int choice;
+		StudentManager sm = StudentManager();
+		Student student;
 		std::cout << "Enter your choice: ";
 		std::cin >> choice;
-		if (choice == 1) {
-			this->displayHelp();
-		}
-		else if (choice == 2)
+		switch (choice)
 		{
-			Student student = this->askStudentDetails();
-			StudentManager sm = StudentManager();
-			sm.addStudent(student);
-		}
-		else if (choice == 4)
-		{
-			std::cout << "Exiting..." << std::endl;
+			case 1:	
+				this->displayHelp();
+				break;
+			case 2:
+				student = this->askStudentDetails();
+				sm.addStudent(student);
+				break;
+			case 3:
+				std::cout << "Viewing all students is not implemented yet." << std::endl;
+				break;
+			case 4:
+				std::cout << "Exiting..." << std::endl;
+				return;
+
+		default:
 			break;
-		}
-		else
-		{
-			std::cout << "You selected option " << choice << std::endl;
 		}
 	}
 }
@@ -63,6 +67,7 @@ Student UI::askStudentDetails()
 	std::cin >> email;
 	std::cout << "Enter Student Code: ";
 	std::cin >> studentCode;
+	this->eto = "done";
 	
 	StudentManager sm = StudentManager();
 	return sm.createStudent(personalCode, firstName, lastName, group, email, studentCode);

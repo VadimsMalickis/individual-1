@@ -7,7 +7,7 @@ class UI
 		void displayHelp();
 		void askStudentDetails();
 	public:
-		UI() {}
+		UI();
 		void start();
 };
 

@@ -3,13 +3,25 @@
 #include <string>
 #include "FileManager.h"
 
-Student StudentManager::processNewStudent(std::string personalCode, std::string firstName, std::string lastName, std::string group, std::string email, std::string studentCode)
+void StudentManager::processNewStudent(
+	std::string personalCode,
+	std::string firstName,
+	std::string lastName,
+	std::string group,
+	std::string email,
+	std::string studentCode)
 {   
-	return Student(personalCode, firstName, lastName, group, email, studentCode);
+	Student st = Student(personalCode, firstName, lastName, group, email, studentCode);
+	this->saveStudent(st);
 }
 
-void StudentManager::addStudent(Student student)
+bool StudentManager::saveStudent(Student student)
 {
 	FileManager fm = FileManager();
-	fm.writeStudent(student.studentToString());
+	if (fm.writeStudent(student.studentToString())) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }

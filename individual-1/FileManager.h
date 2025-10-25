@@ -7,5 +7,6 @@ class FileManager
 		const std::string stFileName = "students.txt";
 	public:
 		bool writeStudent(std::string studentAsString);
+		void readAllStudents();
 };
 

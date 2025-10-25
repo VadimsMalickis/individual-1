@@ -15,6 +15,12 @@ void StudentManager::processNewStudent(
 	this->saveStudent(st);
 }
 
+void StudentManager::getAllStudents()
+{
+	FileManager fm = FileManager();
+	fm.readAllStudents();
+}
+
 bool StudentManager::saveStudent(Student student)
 {
 	FileManager fm = FileManager();

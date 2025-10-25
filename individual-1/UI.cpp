@@ -28,7 +28,7 @@ void UI::start()
 				this->askStudentDetails();
 				break;
 			case 3:
-				std::cout << "Viewing all students is not implemented yet." << std::endl;
+				sm.getAllStudents();
 				break;
 			case 4:
 				std::cout << "Exiting..." << std::endl;

@@ -3,6 +3,7 @@
 #include <string>
 #include "FileManager.h"
 #include <iostream>
+#include <vector>
 
 void StudentManager::processNewStudent(
 	std::string personalCode,
@@ -19,8 +20,8 @@ void StudentManager::processNewStudent(
 void StudentManager::getAllStudents()
 {
 	FileManager fm = FileManager();
-	std::string* students = fm.readAllStudents();
-	for (size_t i = 0; students[i] != ""; i++) {
+	std::vector<std::string> students = fm.readAllStudents();
+	for (size_t i = 0;  i < students.size(); i++) {
 		std::cout << students[i] << std::endl;
 	}
 }

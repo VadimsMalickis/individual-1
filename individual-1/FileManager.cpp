@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "FileManager.h"
 
 size_t FileManager::lineCount(const char* fileName)
@@ -33,13 +34,11 @@ bool FileManager::writeStudent(std::string stStr)
 	return false; 
 }
 
-std::string* FileManager::readAllStudents()
+std::vector<std::string> FileManager::readAllStudents()
 {
 	const size_t lines = lineCount(FileManager::stFileName);
-	if (lines == 0) {
-		return nullptr;
-	}
-	std::string* students = new std::string[lines];
+
+	std::vector<std::string> students;
 
 	std::ifstream file;
 	file.open(FileManager::stFileName);
@@ -48,11 +47,9 @@ std::string* FileManager::readAllStudents()
 	{
 		std::string line;
 		for (size_t i = 0; i < lines && std::getline(file, line); i++) {
-			students[i] = line;
+			students.push_back(line);
 		}
 		file.close();
-		return students;
 	}
-	delete[] students;
-	return nullptr;
+	return students;
 }

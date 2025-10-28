@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 #pragma once
 class FileManager
@@ -9,6 +10,6 @@ class FileManager
 		
 	public:
 		bool writeStudent(std::string studentAsString);
-		std::string* readAllStudents();
+		std::vector<std::string> readAllStudents();
 };
 

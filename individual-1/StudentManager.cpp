@@ -2,6 +2,7 @@
 #include "Student.h"
 #include <string>
 #include "FileManager.h"
+#include <iostream>
 
 void StudentManager::processNewStudent(
 	std::string personalCode,
@@ -18,7 +19,10 @@ void StudentManager::processNewStudent(
 void StudentManager::getAllStudents()
 {
 	FileManager fm = FileManager();
-	fm.readAllStudents();
+	std::string* students = fm.readAllStudents();
+	for (size_t i = 0; students[i] != ""; i++) {
+		std::cout << students[i] << std::endl;
+	}
 }
 
 bool StudentManager::saveStudent(Student student)

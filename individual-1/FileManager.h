@@ -4,9 +4,11 @@
 class FileManager
 {
 	private:
-		const std::string stFileName = "students.txt";
+		const char* stFileName = "students.txt";
+		size_t lineCount(const char* fileName);
+		
 	public:
 		bool writeStudent(std::string studentAsString);
-		void readAllStudents();
+		std::string* readAllStudents();
 };
 

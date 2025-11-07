@@ -130,7 +130,6 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FileManager.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="StudentManager.h" />
     <ClInclude Include="UI.h" />

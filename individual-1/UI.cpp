@@ -28,7 +28,7 @@ void UI::start()
 				this->askStudentDetails();
 				break;
 			case 3:
-				sm.getAllStudents();
+				sm.readAllStudents();
 				break;
 			case 4:
 				std::cout << "Exiting..." << std::endl;

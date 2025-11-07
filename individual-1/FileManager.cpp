@@ -2,9 +2,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "FileManager.h"
 
-size_t FileManager::lineCount(const char* fileName)
+size_t StudentManager::lineCount(const char* fileName)
 {
 	size_t count = 0;
 	std::ifstream file;
@@ -21,35 +20,6 @@ size_t FileManager::lineCount(const char* fileName)
 	return count;
 }
 
-bool FileManager::writeStudent(std::string stStr)
-{
-	std::ofstream file;
-	file.open(FileManager::stFileName, std::ios::app);
-	if (file.is_open())
-	{
-		file << stStr << std::endl;
-		file.close();
-		return true;
-	}
-	return false; 
-}
 
-std::vector<std::string> FileManager::readAllStudents()
-{
-	const size_t lines = lineCount(FileManager::stFileName);
 
-	std::vector<std::string> students;
 
-	std::ifstream file;
-	file.open(FileManager::stFileName);
-	
-	if (file.is_open())
-	{
-		std::string line;
-		for (size_t i = 0; i < lines && std::getline(file, line); i++) {
-			students.push_back(line);
-		}
-		file.close();
-	}
-	return students;
-}

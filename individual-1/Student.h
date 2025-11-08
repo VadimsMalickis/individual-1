@@ -1,19 +1,22 @@
 #pragma once
 #include <string>
 
+using namespace std;
+
 class Student
 {
 	private:
-		std::string personalCode;
-		std::string firstName;
-		std::string lastName;
-		std::string group;
-		std::string email;
-		std::string studentCode;
+		string personalCode;
+		string firstName;
+		string lastName;
+		string group;
+		string email;
+		string studentCode;
 
 	public:
+		void setPersonalCode(string personalCode);
 		Student() {}
-		Student(std::string personalCode, std::string firstName, std::string lastName, std::string group, std::string email, std::string studentCode);
-		std::string studentToString();
+		Student(string personalCode, string firstName, string lastName, string group, string email, string studentCode);
+		string studentToString();
 };
 

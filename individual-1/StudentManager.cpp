@@ -3,22 +3,22 @@
 #include <string>
 #include <iostream>
 #include <vector>
-
+#include <sstream>
 
 void StudentManager::processNewStudent(
-	std::string personalCode,
-	std::string firstName,
-	std::string lastName,
-	std::string group,
-	std::string email,
-	std::string studentCode)
+	string personalCode,
+	string firstName,
+	string lastName,
+	string group,
+	string email,
+	string studentCode)
 {   
 	Student st = Student(personalCode, firstName, lastName, group, email, studentCode);
 	this->saveStudent(st);
 }
 
 
-bool StudentManager::saveStudent(Student student)
+bool StudentManager::saveStudent(Student& student)
 {
 	std::ofstream file;
 	file.open(StudentManager::stFileName, std::ios::app);
@@ -30,6 +30,7 @@ bool StudentManager::saveStudent(Student student)
 	}
 	return false;
 }
+
 size_t StudentManager::lineCount(const char* fileName)
 {
 	size_t count = 0;
@@ -47,22 +48,43 @@ size_t StudentManager::lineCount(const char* fileName)
 	return count;
 }
 
-std::vector<std::string> StudentManager::readAllStudents()
+vector<Student> StudentManager::readAllStudents()
 {
 	const size_t lines = lineCount(StudentManager::stFileName);
 
-	std::vector<std::string> students;
+	vector<Student> students;
 
-	std::ifstream file;
+	ifstream file;
 	file.open(StudentManager::stFileName);
 
 	if (file.is_open())
 	{
-		std::string line;
-		for (size_t i = 0; i < lines && std::getline(file, line); i++) {
-			students.push_back(line);
+		string line;
+		vector<string> tokens;
+		Student student;
+		for (size_t i = 0; i < lines && getline(file, line); i++) {
+			tokens = this->split(line, ',');
+			student = Student(
+				tokens[0],
+				tokens[1],
+				tokens[2],
+				tokens[3],
+				tokens[4],
+				tokens[5]
+			);
+			students.push_back(student);
 		}
 		file.close();
 	}
 	return students;
+}
+
+vector<string> StudentManager::split(const std::string& s, char delimiter) {
+	vector<string> tokens;
+	string token;
+	istringstream tokenStream(s);
+	while (getline(tokenStream, token, delimiter)) {
+		tokens.push_back(token);
+	}
+	return tokens;
 }

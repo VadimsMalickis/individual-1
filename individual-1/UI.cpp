@@ -6,19 +6,21 @@
 UI::UI()
 {
 	this->sm = StudentManager();
+	this->students = sm.readAllStudents();
+
 }
 
 void UI::start()
 {
-	std::cout << "Welcome to Student managment system!" << std::endl << std::endl;
-	std::cout << "Type following commands to proceed:" << std::endl << std::endl;
+	cout << "Welcome to Student managment system!" << std::endl << std::endl;
+	cout << "Type following commands to proceed:" << std::endl << std::endl;
 	this->displayHelp();
 
 	while (true)
 	{
 		int choice;
-		std::cout << "Enter your choice: ";
-		std::cin >> choice;
+		cout << "Enter your choice: ";
+		cin >> choice;
 		switch (choice)
 		{
 			case 1:	
@@ -28,10 +30,13 @@ void UI::start()
 				this->askStudentDetails();
 				break;
 			case 3:
-				sm.readAllStudents();
+				for (Student& st : this->students)
+				{
+					cout << st.studentToString() << endl;
+				}
 				break;
 			case 4:
-				std::cout << "Exiting..." << std::endl;
+				cout << "Exiting..." << endl;
 				return;
 
 		default:
@@ -42,33 +47,33 @@ void UI::start()
 
 void UI::displayHelp()
 {
-	std::cout << "1. For Help" << std::endl;
-	std::cout << "2. Register new Student" << std::endl;
-	std::cout << "3. View all Students" << std::endl;
-	std::cout << "4. Exit" << std::endl;
+	cout << "1. For Help" << endl;
+	cout << "2. Register new Student" << endl;
+	cout << "3. View all Students" << endl;
+	cout << "4. Exit" << endl;
 	
 }
 
 void UI::askStudentDetails()
 {
-	std::string personalCode;
-	std::string firstName;
-	std::string lastName;
-	std::string group;
-	std::string email;
-	std::string studentCode;
-	std::cout << "Enter Personal Code: ";
-	std::cin >> personalCode;
-	std::cout << "Enter First Name: ";
-	std::cin >> firstName;
-	std::cout << "Enter Last Name: ";
-	std::cin >> lastName;
-	std::cout << "Enter Group: ";
-	std::cin >> group;
-	std::cout << "Enter Email: ";
-	std::cin >> email;
-	std::cout << "Enter Student Code: ";
-	std::cin >> studentCode;
+	string personalCode;
+	string firstName;
+	string lastName;
+	string group;
+	string email;
+	string studentCode;
+	cout << "Enter Personal Code: ";
+	cin >> personalCode;
+	cout << "Enter First Name: ";
+	cin >> firstName;
+	cout << "Enter Last Name: ";
+	cin >> lastName;
+	cout << "Enter Group: ";
+	cin >> group;
+	cout << "Enter Email: ";
+	cin >> email;
+	cout << "Enter Student Code: ";
+	cin >> studentCode;
 	
 	sm.processNewStudent(personalCode, firstName, lastName, group, email, studentCode);
 }

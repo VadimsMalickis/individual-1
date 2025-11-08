@@ -2,12 +2,12 @@
 #include <string>
 
 Student::Student(
-	std::string personalCode,
-	std::string firstName,
-	std::string lastName,
-	std::string group,
-	std::string email,
-	std::string studentCode
+	string personalCode,
+	string firstName,
+	string lastName,
+	string group,
+	string email,
+	string studentCode
 ) {
 	this->personalCode = personalCode;
 	this->firstName = firstName;
@@ -17,7 +17,12 @@ Student::Student(
 	this->studentCode = studentCode;
 }
 
-std::string Student::studentToString()
+void Student::setPersonalCode(string personalCode)
+{
+	this->personalCode = personalCode;
+}
+
+string Student::studentToString()
 {
 	return this->personalCode + "," +
 			this->firstName + "," +

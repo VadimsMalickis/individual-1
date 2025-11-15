@@ -38,7 +38,7 @@
     <ClInclude Include="StudentManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FilterOption.h">
+    <ClInclude Include="SearchOption.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

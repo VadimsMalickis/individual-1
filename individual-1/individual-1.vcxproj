@@ -129,7 +129,7 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FilterOption.h" />
+    <ClInclude Include="SearchOption.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="StudentManager.h" />
     <ClInclude Include="UI.h" />

@@ -1,5 +1,5 @@
 #pragma once
-enum class FilterOption {
+enum class SearchOption {
 	PersonalCode,
 	StudentCode,
 	Email

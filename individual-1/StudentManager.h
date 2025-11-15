@@ -1,6 +1,6 @@
 #pragma once
 #include "Student.h"
-#include "FilterOption.h"
+#include "SearchOption.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -20,7 +20,7 @@ public:
 		string studentCode
 	);
 	vector<Student> readAllStudents();
-	vector<Student> filterStudents(FilterOption opt, vector<Student>& studentList);
+	Student* searchBy(SearchOption opt, string searchKeyword, vector<Student>& studentList);
 
 private:
 	const char* stFileName = "students.txt";

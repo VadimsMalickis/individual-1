@@ -81,27 +81,37 @@ vector<Student> StudentManager::readAllStudents()
 	return students;
 }
 
-vector<Student> StudentManager::filterStudents(FilterOption opt, vector<Student>& studentList)
+Student* StudentManager::searchBy(
+	SearchOption opt,
+	string searchKeyword,
+	vector<Student>& studentList
+)
 {
-	vector<Student> filteredList;
+	Student* foundStudent = nullptr;
 	switch (opt) {
-		case FilterOption::PersonalCode:
+		case SearchOption::PersonalCode:
 			for (Student& st : studentList) {
-				
+				if (st.getPersonalCode() == searchKeyword) {
+					foundStudent = &st;
+					return foundStudent;
+				}
 			}
-		case FilterOption::StudentCode:
+		case SearchOption::StudentCode:
 			for (Student& st : studentList) {
-
+				if (st.getStudentCode() == searchKeyword) {
+					foundStudent = &st;
+					return foundStudent;
+				}
 			}
-		case FilterOption::Email:
+		case SearchOption::Email:
 			for (Student& st : studentList) {
-
+				if (st.getEmail() == searchKeyword) {
+					foundStudent = &st;
+					return foundStudent;
+				}
 			}
-	
-	default:
-		break;
 	}
-	return filteredList;
+	
 }
 
 vector<string> StudentManager::split(const std::string& s, char delimiter) {

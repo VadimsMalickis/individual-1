@@ -30,7 +30,13 @@ void UI::start()
 				this->askStudentDetails();
 				break;
 			case 3:
+				cout << "	" << endl;
+				cout << "2. Register new Student" << endl;
+				cout << "3. View all Students" << endl;
+				cout << "4. Exit" << endl;
+
 				for (Student& st : this->students)
+
 				{
 					cout << st.studentToString() << endl;
 				}
@@ -51,8 +57,9 @@ void UI::displayHelp()
 	cout << "2. Register new Student" << endl;
 	cout << "3. View all Students" << endl;
 	cout << "4. Exit" << endl;
-	
 }
+
+
 
 void UI::askStudentDetails()
 {

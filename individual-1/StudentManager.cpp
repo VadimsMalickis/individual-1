@@ -20,6 +20,8 @@ void StudentManager::processNewStudent(
 
 bool StudentManager::saveStudent(Student& student)
 {
+
+
 	std::ofstream file;
 	file.open(StudentManager::stFileName, std::ios::app);
 	if (file.is_open())
@@ -77,6 +79,29 @@ vector<Student> StudentManager::readAllStudents()
 		file.close();
 	}
 	return students;
+}
+
+vector<Student> StudentManager::filterStudents(FilterOption opt, vector<Student>& studentList)
+{
+	vector<Student> filteredList;
+	switch (opt) {
+		case FilterOption::PersonalCode:
+			for (Student& st : studentList) {
+				
+			}
+		case FilterOption::StudentCode:
+			for (Student& st : studentList) {
+
+			}
+		case FilterOption::Email:
+			for (Student& st : studentList) {
+
+			}
+	
+	default:
+		break;
+	}
+	return filteredList;
 }
 
 vector<string> StudentManager::split(const std::string& s, char delimiter) {

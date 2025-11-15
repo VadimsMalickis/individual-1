@@ -111,7 +111,7 @@ Student* StudentManager::searchBy(
 				}
 			}
 	}
-	
+	return nullptr;
 }
 
 vector<string> StudentManager::split(const std::string& s, char delimiter) {

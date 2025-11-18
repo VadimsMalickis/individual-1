@@ -20,13 +20,11 @@ void StudentManager::processNewStudent(
 
 bool StudentManager::saveStudent(Student& student)
 {
-
-
-	std::ofstream file;
-	file.open(StudentManager::stFileName, std::ios::app);
+	ofstream file;
+	file.open(StudentManager::STUDENT_FILE, ios::app);
 	if (file.is_open())
 	{
-		file << student.studentToString() << std::endl;
+		file << student.studentToString() << endl;
 		file.close();
 		return true;
 	}
@@ -36,12 +34,12 @@ bool StudentManager::saveStudent(Student& student)
 size_t StudentManager::lineCount(const char* fileName)
 {
 	size_t count = 0;
-	std::ifstream file;
+	ifstream file;
 	file.open(fileName);
 	if (file.is_open())
 	{
-		std::string line;
-		while (std::getline(file, line))
+		string line;
+		while (getline(file, line))
 		{
 			count++;
 		}
@@ -50,14 +48,14 @@ size_t StudentManager::lineCount(const char* fileName)
 	return count;
 }
 
-vector<Student> StudentManager::readAllStudents()
+void StudentManager::loadAllStudents()
 {
-	const size_t lines = lineCount(StudentManager::stFileName);
+	const size_t lines = lineCount(StudentManager::STUDENT_FILE);
 
 	vector<Student> students;
 
 	ifstream file;
-	file.open(StudentManager::stFileName);
+	file.open(StudentManager::STUDENT_FILE);
 
 	if (file.is_open())
 	{
@@ -78,7 +76,16 @@ vector<Student> StudentManager::readAllStudents()
 		}
 		file.close();
 	}
-	return students;
+	this->students = students;
+}
+
+vector<Student>& StudentManager::getAllStudents()
+{
+	if (this->students.empty())
+	{
+		this->loadAllStudents();
+	}
+	return this->students;
 }
 
 Student* StudentManager::searchBy(

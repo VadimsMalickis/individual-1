@@ -7,7 +7,6 @@ class UI
 {
 	private:
 		StudentManager sm;
-		vector<Student> students;
 		void displayHelp();
 		void askStudentDetails();
 	public:

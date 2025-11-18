@@ -6,8 +6,6 @@
 UI::UI()
 {
 	this->sm = StudentManager();
-	this->students = sm.readAllStudents();
-
 }
 
 void UI::start()
@@ -23,24 +21,25 @@ void UI::start()
 		cin >> choice;
 		switch (choice)
 		{
-			case 1:	
-				this->displayHelp();
-				break;
-			case 2:
-				this->askStudentDetails();
-				break;
-			case 3:
-				cout << "	" << endl;
-				cout << "2. Register new Student" << endl;
-				cout << "3. View all Students" << endl;
-				cout << "4. Exit" << endl;
-
-				for (Student& st : this->students)
-
-				{
-					cout << st.studentToString() << endl;
+		case 1: {
+			this->displayHelp();
+			break;
+		}
+		case 2: {
+			this->askStudentDetails();
+			break;
+		}
+		case 3: {
+			vector<Student>& students = this->sm.getAllStudents();
+			if (students.size() == 0) {
+				cout << "No students found!" << endl;
+			} else {
+				for (Student& student : students) {
+					cout << student.studentToString() << endl;
 				}
-				break;
+			}
+			break;
+		}
 			case 4:
 				cout << "Exiting..." << endl;
 				return;

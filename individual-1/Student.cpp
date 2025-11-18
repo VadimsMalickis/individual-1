@@ -1,6 +1,7 @@
 #include "Student.h"
 #include <string>
 
+
 Student::Student(
 	string personalCode,
 	string firstName,
@@ -30,4 +31,59 @@ string Student::studentToString()
 			this->group + "," +
 			this->email + "," +
 			this->studentCode;
+}
+
+string Student::getPersonalCode()
+{
+	return this->personalCode;
+}
+
+string Student::getStudentCode()
+{
+	return this->studentCode;
+}
+
+string Student::getEmail()
+{
+	return this->email;
+}
+
+string Student::getFirstName()
+{
+	return this->firstName;
+}
+
+void Student::setFirstName(string firstName)
+{
+	this->firstName = firstName;
+}
+
+string Student::getLastName()
+{
+	return this->lastName;
+}
+
+void Student::setLastName(string lastName)
+{
+	this->lastName = lastName;
+}
+
+string Student::getGroup()
+{
+	return this->group;
+}
+
+void Student::setGroup(string group)
+{
+	this->group = group;
+}
+
+void Student::setEmail(string email)
+{
+	this->email = email;
+}
+
+void Student::setStudentCode(string studentCode)
+{
+	this->studentCode = studentCode;
 }

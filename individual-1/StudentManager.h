@@ -19,13 +19,19 @@ public:
 		string email,
 		string studentCode
 	);
-	vector<Student> readAllStudents();
+	void loadAllStudents();
+	vector<Student>& getAllStudents();
 	Student* searchBy(SearchOption opt, string searchKeyword, vector<Student>& studentList);
 
 private:
-	const char* stFileName = "students.txt";
+	vector<Student> students;
+
+	const char* STUDENT_FILE = "students.txt";
+
 	size_t lineCount(const char* fileName);
+
 	bool saveStudent(Student& student);
+
 	vector<string> split(const std::string& s, char delimiter);
 
 };

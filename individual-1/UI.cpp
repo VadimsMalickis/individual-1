@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "UI.h"
 #include "StudentManager.h"
 #include "Student.h"
@@ -31,13 +32,7 @@ void UI::start()
 		}
 		case 3: {
 			vector<Student>& students = this->sm.getAllStudents();
-			if (students.size() == 0) {
-				cout << "No students found!" << endl;
-			} else {
-				for (Student& student : students) {
-					cout << student.studentToString() << endl;
-				}
-			}
+			displayStudentTable(students);
 			break;
 		}
 			case 4:
@@ -82,6 +77,38 @@ void UI::askStudentDetails()
 	cin >> studentCode;
 	
 	sm.processNewStudent(personalCode, firstName, lastName, group, email, studentCode);
+}
+
+void UI::displayStudentTable(vector<Student>& students)
+{
+	if (students.size() == 0) {
+		cout << "No students found!" << endl;
+	}
+	else {
+		const size_t UNDERLINE_WIDTH = UI::COLUMN_WIDTH * 6 + 12;
+		cout << string(UNDERLINE_WIDTH, '=') << endl;
+		cout << left
+			<< setw(UI::COLUMN_WIDTH) << "| Personal Code "
+			<< setw(UI::COLUMN_WIDTH) << "| First Name "
+			<< setw(UI::COLUMN_WIDTH) << "| Last Name "
+			<< setw(UI::COLUMN_WIDTH) << "| Group "
+			<< setw(UI::COLUMN_WIDTH + 10) << "| Email "
+			<< setw(UI::COLUMN_WIDTH) << "| Student Code |" << endl;
+
+		cout << string(UNDERLINE_WIDTH, '=') << endl;
+
+		// Print each student record in a new row
+		for (Student& student : students) {
+			cout << left
+				<< setw(UI::COLUMN_WIDTH) << "| " + student.getPersonalCode()
+				<< setw(UI::COLUMN_WIDTH) << " | " + student.getFirstName()
+				<< setw(UI::COLUMN_WIDTH) << " | " + student.getLastName()
+				<< setw(UI::COLUMN_WIDTH) << " | " + student.getGroup()
+				<< setw(UI::COLUMN_WIDTH + 10) << " | " + student.getEmail()
+				<< setw(UI::COLUMN_WIDTH) << " | " + student.getStudentCode() << " |" << endl;
+			cout << string(UNDERLINE_WIDTH, '-') << endl;
+		}
+	}
 }
 
 

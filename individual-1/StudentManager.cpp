@@ -88,37 +88,34 @@ vector<Student>& StudentManager::getAllStudents()
 	return this->students;
 }
 
-Student* StudentManager::searchBy(
+vector<Student>& StudentManager::searchBy(
 	SearchOption opt,
 	string searchKeyword,
 	vector<Student>& studentList
 )
 {
-	Student* foundStudent = nullptr;
+	vector<Student> foundStudents;
 	switch (opt) {
 		case SearchOption::PersonalCode:
 			for (Student& st : studentList) {
 				if (st.getPersonalCode() == searchKeyword) {
-					foundStudent = &st;
-					return foundStudent;
+					foundStudents.push_back(st);
 				}
 			}
 		case SearchOption::StudentCode:
 			for (Student& st : studentList) {
 				if (st.getStudentCode() == searchKeyword) {
-					foundStudent = &st;
-					return foundStudent;
+					foundStudents.push_back(st);
 				}
 			}
 		case SearchOption::Email:
 			for (Student& st : studentList) {
 				if (st.getEmail() == searchKeyword) {
-					foundStudent = &st;
-					return foundStudent;
+					foundStudents.push_back(st);
 				}
 			}
 	}
-	return nullptr;
+	return foundStudents;
 }
 
 vector<string> StudentManager::split(const std::string& s, char delimiter) {

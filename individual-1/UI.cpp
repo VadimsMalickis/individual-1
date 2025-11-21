@@ -12,7 +12,7 @@ UI::UI()
 void UI::start()
 {
 	cout << "Welcome to Student managment system!" << std::endl << std::endl;
-	cout << "Type following commands to proceed:" << std::endl << std::endl;
+	cout << "Type following commands to proceed:" << std::endl;
 	this->displayHelp();
 
 	while (true)
@@ -35,10 +35,44 @@ void UI::start()
 			displayStudentTable(students);
 			break;
 		}
-			case 4:
-				cout << "Exiting..." << endl;
-				return;
-
+		case 4: {
+			int option;
+			string keyword;
+			vector<Student>& students = this->sm.getAllStudents();
+			vector<Student> foundStudents;
+			cout << "1. Seach by Personal Code" << endl;
+			cout << "2. Seach by Student Code" << endl;
+			cout << "3. Seach by Email" << endl;
+			cin >> option;
+			cout << "Enter search keyword: ";
+			cin >> keyword;
+			cout << endl;
+			switch (option) {
+				case 1: {
+					foundStudents = this->sm.searchBy(SearchOption::PersonalCode, keyword, students);
+					break;
+				}
+				case 2: {
+					foundStudents = this->sm.searchBy(SearchOption::StudentCode, keyword, students);
+					break;
+				}
+				case 3: {
+					foundStudents = this->sm.searchBy(SearchOption::Email, keyword, students);
+					break;
+				}
+			}
+			if (foundStudents.size() == 0) {
+				cout << "No students found!" << endl;
+			}
+			else {
+				displayStudentTable(foundStudents);
+			}
+			break;
+		}
+		case 5: {
+			cout << "Exiting..." << endl;
+			return;
+		}
 		default:
 			break;
 		}
@@ -47,10 +81,11 @@ void UI::start()
 
 void UI::displayHelp()
 {
-	cout << "1. For Help" << endl;
+	cout << endl << "1. For Help" << endl;
 	cout << "2. Register new Student" << endl;
 	cout << "3. View all Students" << endl;
-	cout << "4. Exit" << endl;
+	cout << "4. Student Search" << endl;
+	cout << "5. Exit" << endl << endl;
 }
 
 

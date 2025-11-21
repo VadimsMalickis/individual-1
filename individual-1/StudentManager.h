@@ -21,7 +21,7 @@ public:
 	);
 	void loadAllStudents();
 	vector<Student>& getAllStudents();
-	Student* searchBy(SearchOption opt, string searchKeyword, vector<Student>& studentList);
+	vector<Student>& searchBy(SearchOption opt, string searchKeyword, vector<Student>& studentList);
 
 private:
 	vector<Student> students;

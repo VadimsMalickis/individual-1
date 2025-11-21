@@ -1,7 +1,9 @@
 #pragma once
-enum class SearchOption {
-	PersonalCode,
-	StudentCode,
-	Email
+
+enum class SearchOption
+{
+    PersonalCode,
+    StudentCode,
+    Email
 };
 

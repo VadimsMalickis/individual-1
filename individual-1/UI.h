@@ -12,6 +12,7 @@ class UI
 		StudentManager sm;
 		void displayHelp();
 		void askStudentDetails();
+		void editStudentDetails();
 		void displayStudentTable(vector<Student>& students);
 	public:
 		UI();

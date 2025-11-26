@@ -18,7 +18,7 @@ void UI::start()
 	while (true)
 	{
 		int choice;
-		cout << "Enter your choice: ";
+		cout << endl << "Enter your choice: ";
 		cin >> choice;
 		switch (choice)
 		{
@@ -28,36 +28,47 @@ void UI::start()
 		}
 		case 2: {
 			this->askStudentDetails();
+			cout << "Student registered successfully!" << endl;
 			break;
 		}
 		case 3: {
 			vector<Student>& students = this->sm.getAllStudents();
 			displayStudentTable(students);
-			break;
+			cout << "EDIT {E} or DELETE {D} a student by entering their Personal Code, or press ENTER to return to main menu." << endl;
+			char action;
+			cout << ": ";
+			cin >> action;
+			if (action == 'E' || action == 'e') {
+				this->editStudentDetails();
+			}
+			else if (action == 'D' || action == 'd') {
+				// delete action
+			}
+ 			break;
 		}
 		case 4: {
 			int option;
 			string keyword;
-			vector<Student>& students = this->sm.getAllStudents();
 			vector<Student> foundStudents;
 			cout << "1. Seach by Personal Code" << endl;
 			cout << "2. Seach by Student Code" << endl;
 			cout << "3. Seach by Email" << endl;
+			cout << ": ";
 			cin >> option;
-			cout << "Enter search keyword: ";
+			cout << endl << "Enter search keyword: ";
 			cin >> keyword;
 			cout << endl;
 			switch (option) {
 				case 1: {
-					foundStudents = this->sm.searchBy(SearchOption::PersonalCode, keyword, students);
+					foundStudents = this->sm.searchBy(SearchOption::PersonalCode, keyword);
 					break;
 				}
 				case 2: {
-					foundStudents = this->sm.searchBy(SearchOption::StudentCode, keyword, students);
+					foundStudents = this->sm.searchBy(SearchOption::StudentCode, keyword);
 					break;
 				}
 				case 3: {
-					foundStudents = this->sm.searchBy(SearchOption::Email, keyword, students);
+					foundStudents = this->sm.searchBy(SearchOption::Email, keyword);
 					break;
 				}
 			}
@@ -85,7 +96,7 @@ void UI::displayHelp()
 	cout << "2. Register new Student" << endl;
 	cout << "3. View all Students" << endl;
 	cout << "4. Student Search" << endl;
-	cout << "5. Exit" << endl << endl;
+	cout << "5. Exit" << endl;
 }
 
 
@@ -112,6 +123,39 @@ void UI::askStudentDetails()
 	cin >> studentCode;
 	
 	sm.processNewStudent(personalCode, firstName, lastName, group, email, studentCode);
+}
+
+void UI::editStudentDetails()
+{
+	string personalCode;
+	cin >> personalCode;
+
+	for (Student& student : sm.getAllStudents()) {
+		if (student.getPersonalCode() == personalCode) {
+			string firstName;
+			string lastName;
+			string group;
+			string email;
+			string studentCode;
+			cout << "Enter First Name (" << student.getFirstName() << "): ";
+			cin >> firstName;
+			cout << "Enter Last Name (" << student.getLastName() << "): ";
+			cin >> lastName;
+			cout << "Enter Group (" << student.getGroup() << "): ";
+			cin >> group;
+			cout << "Enter Email (" << student.getEmail() << "): ";
+			cin >> email;
+			cout << "Enter Student Code (" << student.getStudentCode() << "): ";
+			cin >> studentCode;
+			student.setFirstName(firstName);
+			student.setLastName(lastName);
+			student.setGroup(group);
+			student.setEmail(email);
+			student.setStudentCode(studentCode);
+			cout << "Student details updated successfully!" << endl;
+			break;
+		}
+	}
 }
 
 void UI::displayStudentTable(vector<Student>& students)

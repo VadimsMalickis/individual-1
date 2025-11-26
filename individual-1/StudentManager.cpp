@@ -88,34 +88,46 @@ vector<Student>& StudentManager::getAllStudents()
 	return this->students;
 }
 
-vector<Student>& StudentManager::searchBy(
-	SearchOption opt,
-	string searchKeyword,
-	vector<Student>& studentList
-)
+vector<Student> StudentManager::searchBy(SearchOption opt, string& keyword)
 {
+	vector<Student>& students = this->getAllStudents();
 	vector<Student> foundStudents;
-	switch (opt) {
-		case SearchOption::PersonalCode:
-			for (Student& st : studentList) {
-				if (st.getPersonalCode() == searchKeyword) {
-					foundStudents.push_back(st);
-				}
+
+	if (opt == SearchOption::PersonalCode) {
+		for (Student& st : students) {
+			if (st.getPersonalCode().find(keyword) != string::npos) {
+				foundStudents.push_back(st);
 			}
-		case SearchOption::StudentCode:
-			for (Student& st : studentList) {
-				if (st.getStudentCode() == searchKeyword) {
-					foundStudents.push_back(st);
-				}
-			}
-		case SearchOption::Email:
-			for (Student& st : studentList) {
-				if (st.getEmail() == searchKeyword) {
-					foundStudents.push_back(st);
-				}
-			}
+		}
 	}
+	else if (opt == SearchOption::StudentCode) {
+		for (Student& st : students) {
+			if (st.getStudentCode().find(keyword) != string::npos) {
+				foundStudents.push_back(st);
+			}
+		}
+	}
+	else if (opt == SearchOption::Email) {
+		for (Student& st : students) {
+			if (st.getEmail().find(keyword) != string::npos) {
+				foundStudents.push_back(st);
+			}
+		}
+	}
+	
 	return foundStudents;
+}
+
+void StudentManager::updateStudentList(vector<Student>& studentList)
+{
+	ofstream file;
+	file.open(StudentManager::STUDENT_FILE, ios::trunc);
+	if (file.is_open()) {
+		for (Student& student : studentList) {
+			file << student.studentToString() << endl;
+		}
+		file.close();
+	}
 }
 
 vector<string> StudentManager::split(const std::string& s, char delimiter) {

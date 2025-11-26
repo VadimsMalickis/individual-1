@@ -15,8 +15,7 @@ void UI::start()
 	cout << "Type following commands to proceed:" << std::endl;
 	this->displayHelp();
 
-	while (true)
-	{
+	while (true) {
 		int choice;
 		cout << endl << "Enter your choice: ";
 		cin >> choice;
@@ -44,7 +43,10 @@ void UI::start()
 			else if (action == 'D' || action == 'd') {
 				// delete action
 			}
- 			break;
+			else { 
+				cout << "Unknown action." << endl;
+			}
+			break;
 		}
 		case 4: {
 			int option;
@@ -128,10 +130,12 @@ void UI::askStudentDetails()
 void UI::editStudentDetails()
 {
 	string personalCode;
+	cout << "Enter Personal Code of the student to edit: ";
 	cin >> personalCode;
-
+	bool found = false;
 	for (Student& student : sm.getAllStudents()) {
 		if (student.getPersonalCode() == personalCode) {
+			found = true;
 			string firstName;
 			string lastName;
 			string group;
@@ -152,9 +156,14 @@ void UI::editStudentDetails()
 			student.setGroup(group);
 			student.setEmail(email);
 			student.setStudentCode(studentCode);
+
+			sm.updateStudentList(sm.getAllStudents());
 			cout << "Student details updated successfully!" << endl;
 			break;
 		}
+	}
+	if (!found) {
+		cout << "Student with Personal Code \"" << personalCode << "\" not found!" << endl;
 	}
 }
 

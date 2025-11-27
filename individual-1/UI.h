@@ -13,6 +13,7 @@ class UI
 		void displayHelp();
 		void askStudentDetails();
 		void editStudentDetails();
+		void deleteSingleStudent();
 		void displayStudentTable(vector<Student>& students);
 	public:
 		UI();

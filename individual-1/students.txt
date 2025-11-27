@@ -1,3 +1,2 @@
-test,Vadim,Petrovich,4401BNA,vadim@tsi.lv,st88912
 Petja,Vasja,Peter,DP1,a@a.lv,st32323
 12122,Tina,Tina,233dd,a@aa.lv,23233

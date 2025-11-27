@@ -41,7 +41,7 @@ void UI::start()
 				this->editStudentDetails();
 			}
 			else if (action == 'D' || action == 'd') {
-				// delete action
+				this->deleteSingleStudent();
 			}
 			else { 
 				cout << "Unknown action." << endl;
@@ -163,6 +163,32 @@ void UI::editStudentDetails()
 		}
 	}
 	if (!found) {
+		cout << "Student with Personal Code \"" << personalCode << "\" not found!" << endl;
+	}
+}
+
+void UI::deleteSingleStudent()
+{
+	string personalCode;
+	cout << "Enter Personal Code of the student to delete: ";
+	cin >> personalCode;
+	vector<Student>& students = sm.getAllStudents();
+
+	auto original_size = students.size();
+
+	students.erase(
+		remove_if(students.begin(), students.end(),
+			[&personalCode](Student& student) {
+				return student.getPersonalCode() == personalCode;
+			}),
+		students.end()
+	);
+
+	if (students.size() < original_size) {
+		sm.updateStudentList(students); // Save the changes back to the file
+		cout << "Student with Personal Code \"" << personalCode << "\" was deleted successfully." << endl;
+	}
+	else {
 		cout << "Student with Personal Code \"" << personalCode << "\" not found!" << endl;
 	}
 }

@@ -33,14 +33,14 @@ void UI::start()
 		case 3: {
 			vector<Student>& students = this->sm.getAllStudents();
 			displayStudentTable(students);
-			cout << "EDIT {E} or DELETE {D} a student by entering their Personal Code, or press ENTER to return to main menu." << endl;
-			char action;
+			cout << "EDIT {E} or DELETE {D} a student by entering their Personal Code." << endl;
+			string action;
 			cout << ": ";
 			cin >> action;
-			if (action == 'E' || action == 'e') {
+			if (action == "E" || action == "e") {
 				this->editStudentDetails();
 			}
-			else if (action == 'D' || action == 'd') {
+			else if (action == "D" || action == "d") {
 				this->deleteSingleStudent();
 			}
 			else { 
